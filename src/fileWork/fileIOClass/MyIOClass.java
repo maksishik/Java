@@ -17,7 +17,8 @@ public class MyIOClass {
             fileInputStream = new FileInputStream(path);
 
             int fileSize = fileInputStream.available();
-            System.out.println("SizeOf = " + ByteTo.toKB(fileSize) + " bite");
+            if(path.isDirectory())
+                System.out.println("SizeOf = " + ByteTo.toKB(fileSize) + " bite");
 
             int sym = 0;
             System.out.println("File`s content:");
@@ -32,7 +33,6 @@ public class MyIOClass {
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-
         }
     }
 }
