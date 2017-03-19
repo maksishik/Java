@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Created by Maksim on 17.03.2017.
  */
-public class MyFileClass {
+public class MyFileWRClass {
     private static FileWriter fw = null;
     private static FileReader fr = null;
 
