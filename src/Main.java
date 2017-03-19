@@ -1,22 +1,31 @@
+import fileWork.ByteTo;
 import fileWork.fileClass.MyFileClass;
 import fileWork.fileIOClass.MyIOClass;
+import fileWork.fileWRClass.MyFileWRClass;
 
 import java.io.File;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        //String srt = "Test write";
-        //File file = new File("D:\\Other\\JAVA prjs\\Java-PHP\\src\\1.txt");
-        //File file2 = new File("D:\\Other\\JAVA prjs\\Java-PHP\\src\\2.txt");
+        File file = new File("D:\\Other\\JAVA prjs\\Java-PHP\\src\\1.txt");
+        File dir = new File("D:\\Other\\Универ");
+        boolean isWriteInFile = false;
 
-        File dir = new File("D:\\Other\\JAVA prjs\\Java-PHP");
-        MyFileClass.test(dir);
-        System.out.println(MyFileClass.dirSize);
+        List<String> a = MyFileClass.getDirInfo(dir, isWriteInFile);
 
-        //MyIOClass.writeFromOneToOther(file, file2);
-        //MyFileWRClass.fileRead(file);
+        System.out.println("\nDirectory size = " + ByteTo.toMB(MyFileClass.dirSize));
+        System.out.println("Total files = " + MyFileClass.coutFiles);
 
-        //fileWork.fileWRClass.MyFileWRClass.fileWrite(file, srt);
+        if(isWriteInFile) {
+            String text = "";
+
+            for (String i : a) {
+                text += i + "\n";
+            }
+
+            MyFileWRClass.fileWrite(file, text);
+        }
     }
 }

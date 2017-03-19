@@ -11,7 +11,7 @@ public class ByteTo {
         return ((float)(size / BYTE_IN_KILOBYTE));
     }
 
-    public static float toMB(float size) {
+        public static float toMB(float size) {
         return ((float)(size / BYTE_IN_MEGABYTE));
     }
 }
