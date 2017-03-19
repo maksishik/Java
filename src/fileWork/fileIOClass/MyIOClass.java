@@ -1,38 +1,69 @@
 package fileWork.fileIOClass;
 
-import fileWork.ByteTo;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by Maksim on 17.03.2017.
  */
 public class MyIOClass {
-    private static FileInputStream fileInputStream = null;
+    private static FileInputStream fin = null;
+    private static FileOutputStream fos = null;
 
-    public static void writeFile(File path) {
+    public static void readFile(File path) {
         try {
-            fileInputStream = new FileInputStream(path);
-
-            int fileSize = fileInputStream.available();
-            if(path.isDirectory())
-                System.out.println("SizeOf = " + ByteTo.toKB(fileSize) + " bite");
+            fin = new FileInputStream(path);
 
             int sym = 0;
             System.out.println("File`s content:");
-            while ((sym = fileInputStream.read()) != -1) {
+            while ((sym = fin.read()) != -1) {
                 System.out.print((char)sym);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
             try {
-                fileInputStream.close();
+                fin.close();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static void writeFile(File path, String text) {
+        try {
+            fos = new FileOutputStream(path);
+
+            byte[] buffer = text.getBytes();
+            fos.write(buffer);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void writeFromOneToOther(File from, File to) {
+        try {
+            fin = new FileInputStream(from);
+            fos = new FileOutputStream(to);
+
+            byte[] buffer = new byte[fin.available()];
+            fin.read(buffer);
+            fos.write(buffer);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            try {
+                fin.close();
+                fos.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 }

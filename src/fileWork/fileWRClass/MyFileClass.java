@@ -1,4 +1,4 @@
-package fileWork.fileClass;
+package fileWork.fileWRClass;
 
 import java.io.File;
 import java.io.FileReader;
@@ -46,4 +46,6 @@ public class MyFileClass {
             }
         }
     }
+
+
 }
